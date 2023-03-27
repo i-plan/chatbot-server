@@ -21,7 +21,7 @@ pillow = "*"
 python-dotenv = "*"
 influxdb-client = "*"
 apscheduler = "*"
-
+openai = "*"
 
 [dev-packages]
 python-dotenv = "*"
