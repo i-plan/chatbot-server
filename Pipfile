@@ -22,9 +22,8 @@ python-dotenv = "*"
 influxdb-client = "*"
 apscheduler = "*"
 openai = "*"
+requests = "*"
+pysocks = "*"
 
 [dev-packages]
 python-dotenv = "*"
-
-[requires]
-python_version = "3.8"

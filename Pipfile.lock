@@ -1,12 +1,10 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "81b1a86784095e1e192cd816dfece8e027cfd5ffc5f6df5df53c9e9f890778fd"
+            "sha256": "295b19c80e6c2c58060967214dd587b5b2c780132f87c6ee011875d2fac77d99"
         },
         "pipfile-spec": 6,
-        "requires": {
-            "python_version": "3.8"
-        },
+        "requires": {},
         "sources": [
             {
                 "name": "tsinghua",
@@ -775,6 +773,15 @@
             "index": "tsinghua",
             "version": "==9.4.0"
         },
+        "pysocks": {
+            "hashes": [
+                "sha256:08e69f092cc6dbe92a0fdd16eeb9b9ffbc13cadfe5ca4c7bd92ffb078b293299",
+                "sha256:2725bd0a9925919b9b51739eea5f9e2bae91e83288108a9ad338b2e3a4435ee5",
+                "sha256:3f8804571ebe159c380ac6de37643bb4685970655d3bba243530d6558b799aa0"
+            ],
+            "index": "tsinghua",
+            "version": "==1.7.1"
+        },
         "python-dateutil": {
             "hashes": [
                 "sha256:0123cacc1627ae19ddf3c27a5de5bd67ee4586fbdd6440d9748f8abb483d3e86",
@@ -827,7 +834,7 @@
                 "sha256:64299f4909223da747622c030b781c0d7811e359c37124b4bd368fb8c6518baa",
                 "sha256:98b1b2782e3c6c4904938b84c0eb932721069dfdb9134313beff7c83c2df24bf"
             ],
-            "markers": "python_version >= '3.7' and python_version < '4.0'",
+            "index": "tsinghua",
             "version": "==2.28.2"
         },
         "sentry-sdk": {

@@ -3,7 +3,6 @@ import os
 from flask import Flask, current_app
 from flask_login import LoginManager
 
-from sentry_sdk.integrations.flask import FlaskIntegration
 from app import api, storage
 from flask_wtf.csrf import CSRFProtect
 from app.config import ProductionConfig
