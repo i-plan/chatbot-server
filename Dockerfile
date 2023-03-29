@@ -7,7 +7,8 @@ COPY . .
 
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
-RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN #pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip install -r requirements.txt
 
 ## package
 #RUN pipenv install setuptools wheel --dev
