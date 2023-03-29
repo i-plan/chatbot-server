@@ -21,8 +21,8 @@ services:
   #     - 3000:3000
   #   volumes:
   #     - ./volumes/grafana:/var/lib/grafana
-  spacecraftserver4flask:
-    container_name: spacecraftserver4flask
+  chatbot-server:
+    container_name: chatbot-server
     build:
       context: .
       dockerfile: Dockerfile
