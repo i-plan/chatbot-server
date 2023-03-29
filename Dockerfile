@@ -1,13 +1,14 @@
 FROM python:3.11.0
-WORKDIR /chatbot-server
+#WORKDIR /chatbot-server
 
 # Copy src files
-COPY . .
+#COPY . .
 #ADD . /chatbot-server
 
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pwd
 RUN pip install pipenv 
 #RUN pipenv shell
 RUN pipenv install
