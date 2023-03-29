@@ -19,5 +19,5 @@ RUN pip install -r requirements.txt
 # Expose port 5000
 EXPOSE 9000
 # Start the server
-#ENTRYPOINT ["python", "-m","app"]
-CMD ["gunicorn","-c","gunicorn.conf.py","main:app"]
+ENTRYPOINT ["python", "-m","app"]
+#CMD ["gunicorn","-c","gunicorn.conf.py","main:app"]
