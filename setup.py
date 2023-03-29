@@ -3,7 +3,7 @@ from setuptools import find_packages, setup
 
 # python setup.py install
 setup(
-    name='spacecraftserver4flask',
+    name='chatbot-server',
     version='1.0.0',
     packages=find_packages(include=['app']),
     include_package_data=True,
@@ -37,11 +37,14 @@ setup(
         'Programming Language :: Python :: 3.4',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
+        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.11',
     ],
     entry_points={
         'console_scripts': [
             'app=app:create_app',
-            "fk = app:main",
+            "start= app:main",
         ],
         'flask.commands': [
             'my-command=extension.commands:cli'
