@@ -43,8 +43,7 @@ setup(
     ],
     entry_points={
         'console_scripts': [
-            'app=app:create_app',
-            "start= app:main",
+            "chatbot-server=app:main"
         ],
         'flask.commands': [
             'my-command=extension.commands:cli'
