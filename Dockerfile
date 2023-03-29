@@ -15,7 +15,7 @@ RUN pip install pipenv
 RUN pipenv install
 
 
-FROM alpine:latest
+#FROM alpine:latest
 
 
 # Expose port 5000
