@@ -1,15 +1,15 @@
 FROM python:3.7.3
 
-WORKDIR /spacecraftserver4flask
+WORKDIR /chatbot-server
 
 # Copy src files
 COPY . .
-#ADD . /SpacecraftServer4Flask
+#ADD . /chatbot-server
 
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip3 install -r requirements.txt
+RUN pip install -r requirements.txt
 # Expose port 5000
 EXPOSE 9000
 
