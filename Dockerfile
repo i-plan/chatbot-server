@@ -1,4 +1,4 @@
-FROM python:3.11.0
+FROM python:3.8.13
 WORKDIR /chatbot-server
 
 # Copy src files
