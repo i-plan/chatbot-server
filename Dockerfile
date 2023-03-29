@@ -24,4 +24,4 @@ RUN pipenv install
 EXPOSE 9000
 # Start the server
 #ENTRYPOINT ["python", "-m","app"]
-CMD ["flask","run","-h","0.0.0.0","-p","9000"]
+CMD ["gunicorn","-c","gunicorn.conf.py","main:app"]
