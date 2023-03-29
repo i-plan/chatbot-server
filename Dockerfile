@@ -9,6 +9,7 @@ FROM python:3.11.0
 #RUN   pip3 install pipenv && pipenv install
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN pwd
+RUN ls -al
 RUN pip install pipenv 
 #RUN pipenv shell
 RUN pipenv install
