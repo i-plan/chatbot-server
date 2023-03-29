@@ -10,7 +10,7 @@ COPY . .
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN ls -al
 RUN pip install pipenv 
-RUN pipenv shell
+RUN pipenv shell --fancy
 RUN pipenv install
 
 ## package
