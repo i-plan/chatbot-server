@@ -1,8 +1,8 @@
 FROM python:3.11.0
-WORKDIR /chatbot-server
+#WORKDIR /chatbot-server
 
 # Copy src files
-COPY . .
+#COPY . .
 #ADD . /chatbot-server
 
 # Install depsrequirements.txt
