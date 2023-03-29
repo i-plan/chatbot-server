@@ -23,4 +23,5 @@ RUN pipenv install
 # Expose port 5000
 EXPOSE 9000
 # Start the server
-ENTRYPOINT [ "bash", "bootstrap"]
+ENTRYPOINT ["python", "-m","app"]
+#CMD ["flask","run","-h","0.0.0.0","-p","5000"]
