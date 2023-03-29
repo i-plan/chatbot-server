@@ -15,9 +15,9 @@ RUN pip install pipenv
 RUN pipenv install
 
 ## package
-RUN pipenv install setuptools wheel --dev
-RUN python setup.py sdist bdist_wheel
-RUN pipenv install dist/chatbot_server-1.0.0-py3-none-any.whl --force-reinstall
+#RUN pipenv install setuptools wheel --dev
+#RUN python setup.py sdist bdist_wheel
+#RUN pipenv install dist/chatbot_server-1.0.0-py3-none-any.whl --force-reinstall
 
 #FROM alpine:latest
 # Expose port 5000
