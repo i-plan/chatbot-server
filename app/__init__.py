@@ -68,3 +68,9 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     l.init(app)
     flask_login_init(app)
     return app
+
+def main():
+    # app = create_app(config="settings.yaml")
+    print("正式服务启动" + "." * 100)
+    app = create_app(config_file='prod_config.py', )
+    app.run(host='0.0.0.0', port=9000)
