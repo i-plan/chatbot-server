@@ -23,4 +23,5 @@ if __name__ == '__main__':
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
     app = create_app(config_file='prod_config.py', )
-    app.run(host='0.0.0.0', port=9000)
+    # app.run(host='0.0.0.0', port=9000)
+    app.run(host='localhost',port=9000)
