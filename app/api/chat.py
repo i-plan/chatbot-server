@@ -10,7 +10,7 @@ from app.util import l
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 #https://github.com/justjavac/openai-proxy
-openai.api_base = "https://closeai.deno.dev/v1"
+# openai.api_base = "https://closeai.deno.dev/v1"
 
 class ChatAPI(Resource):
     actions = ['txt']
