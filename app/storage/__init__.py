@@ -5,7 +5,7 @@ import os
 import sqlite3
 from flask import current_app, g, Flask
 from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy import String, Integer, DateTime, or_, Column
+from sqlalchemy import String, Integer, DateTime, or_, Column,ARRAY,Boolean
 
 
 def get_db():
