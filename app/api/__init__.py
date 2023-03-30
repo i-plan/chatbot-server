@@ -14,5 +14,5 @@ def init(csrf_protect,app: Flask):
     api.add_resource(Ping,"/ping" ,endpoint='ping')
     api.add_resource(user.UserApi, "/api/user", "/api/user/<int:user_id>/<string:action>", "/api/user/<string:action>",
                      "/api/user/<int:user_id>", endpoint='user')
-    api.add_resource(passport.PassportAPI, '/api/passport/<string:action>', endpoint='passport')
+    api.add_resource(passport.PassportAPI, '/api/passport', '/api/passport/','/api/passport/<string:action>', endpoint='passport')
     api.add_resource(chat.ChatAPI,'/api/chat/<string:action>', endpoint='chat')
