@@ -104,7 +104,7 @@ proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 - flask run 时只会读取.flaskenv/.env的配置，即使配置了config_file/config_object，也会不生效
 - python xx.py时config_file/config_object配置文件将会生效
 
-所以flask run常用雨调试阶段，而python xx.py用于部署阶段
+所以flask run常用于调试阶段，而gunicorn用于部署阶段
 
 
 ## instance folder copy to /
