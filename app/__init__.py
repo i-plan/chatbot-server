@@ -73,4 +73,4 @@ def main():
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
     app = create_app(config_file='prod_config.py', )
-    app.run(port=os.getenv("PORT", default=9000))
+    app.run(port=os.getenv("PORT", default=5000))
