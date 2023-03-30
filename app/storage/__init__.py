@@ -26,13 +26,15 @@ def close_db(e=None):
 
 
 alchemy = SQLAlchemy()
-DbModel = alchemy.Model
+DbModel  = alchemy.Model
 dbSession = alchemy.session
 DbColumn = Column
 DbInteger = Integer
 DbString = String
 DbDateTime = DateTime
 db_or = or_
+DbArray = ARRAY
+DbBoolean = Boolean
 
 
 def init(app: Flask):
