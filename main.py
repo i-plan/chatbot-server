@@ -3,6 +3,9 @@ import os
 
 app = Flask(__name__)
 
+@app.route('/ping')
+def ping():
+    return jsonify({"pong"})
 
 @app.route('/')
 def index():
