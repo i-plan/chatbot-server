@@ -12,7 +12,7 @@ from app.util import l
 class PassportAPI(Resource):
     actions = ['login', 'logout']
 
-    def post(self, action = None):
+    def post(self, action):
         """
         /passport/login
         or
