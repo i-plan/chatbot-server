@@ -15,7 +15,7 @@ openai.api_key = os.getenv("OPENAI_API_KEY")
 class ChatAPI(Resource):
     actions = ['txt']
 
-    def post(self, action):
+    def post(self, action = None):
         """
         /chat/txt
         :return:
