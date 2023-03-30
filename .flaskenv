@@ -1,4 +1,0 @@
-#SERVER_NAME = '0.0.0.0:9000'
-#FLASK_ENV = development
-#FLASK_DEBUG = 1
-#FLASK_RUN_PORT
