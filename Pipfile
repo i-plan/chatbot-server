@@ -22,6 +22,9 @@ apscheduler = "*"
 openai = "*"
 requests = "*"
 pysocks = "*"
+python-telegram-bot = "*"
+tiktoken = "*"
+pydub = "*"
 
 [dev-packages]
 python-dotenv = "*"
