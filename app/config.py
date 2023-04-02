@@ -13,6 +13,7 @@ class Config(object):
     # MAX_COOKIE_SIZE = 10485760
     # MAX_CONTENT_LENGTH=None
     DB_SERVER = '192.168.1.56'
+    MONGO_URI = "mongodb://mongo:CgBYQwt2TYtnxHArROFD@containers-us-west-32.railway.app:5746/test"
 
     @property
     def DATABASE_URI(self):  # Note: all caps

@@ -25,6 +25,7 @@ pysocks = "*"
 python-telegram-bot = "*"
 tiktoken = "*"
 pydub = "*"
+flask-pymongo = "*"
 
 [dev-packages]
 python-dotenv = "*"
