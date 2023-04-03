@@ -1,3 +1,6 @@
+"""
+https://pymongo.readthedocs.io/en/stable/tutorial.html
+"""
 from pymongo import MongoClient
 
 client = MongoClient(
