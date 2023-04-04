@@ -49,8 +49,7 @@ class UserApi(Resource):
                 }})
 
         with current_app.app_context():
-            mongodb = get_mongo().cx.chatai
-            c = mongodb['chat_users']
+            c = self.get_chat_users()
             u = c.find_one({'openid': openid}, {'_id': False})
             if not u:
                 l.i("not u , 401 未注册")
@@ -78,8 +77,7 @@ class UserApi(Resource):
         with current_app.app_context():
             d = request.get_json()
             openid = self.get_openid(d['code'])
-            mongodb = get_mongo().cx.chatai
-            c = mongodb['chat_users']
+            c = self.get_chat_users()
             u = c.find_one({'openid': openid})
             if u:
                 l.i("200 u已存在")
@@ -105,6 +103,10 @@ class UserApi(Resource):
     def delete(self, user_id):
         ret = user_dao.remove(id=user_id)
         return "删除成功" if ret == 1 else "删除失败"
+
+    def get_chat_users(self):
+        mongodb = get_mongo().cx.chatai
+        return mongodb['chat_users']
 
     def get_openid(self, auth_code):
         url = "https://api.weixin.qq.com/sns/jscode2session"
