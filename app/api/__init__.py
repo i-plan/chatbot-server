@@ -6,13 +6,6 @@ from app.storage import  get_mongo
 
 class Ping(Resource):
     def get(self):
-        with current_app.app_context():
-            # online_users = get_mongo().db.users.find({'online': True})
-            # return make_response(online_users)
-            mongodb = get_mongo().cx
-            print(type(mongodb))
-            print(mongodb.list_database_names())
-            # return  make_response(mongodb.chat_users)
         return make_response("ping成功")
 
 def init(csrf_protect,app: Flask):

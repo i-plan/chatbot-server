@@ -26,6 +26,7 @@ python-telegram-bot = "*"
 tiktoken = "*"
 pydub = "*"
 flask-pymongo = "*"
+coloredlogs = "*"
 
 [dev-packages]
 python-dotenv = "*"

@@ -3,6 +3,7 @@ from logging.handlers import SMTPHandler
 import logging
 
 from flask import Flask
+import coloredlogs
 
 logger_dict = {
     'version': 1,
@@ -72,3 +73,7 @@ def e(msg, *args, **kwargs): logging.error(msg, *args, **kwargs)
 
 
 def c(msg, *args, **kwargs): logging.critical(msg, *args, **kwargs)
+
+logger = logging.getLogger(__name__)
+
+coloredlogs.install(level='DEBUG', logger=logger)
