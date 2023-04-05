@@ -11,6 +11,8 @@ from datetime import date
 from calendar import monthrange
 
 # Models can be found here: https://platform.openai.com/docs/models/overview
+from typing import Tuple
+
 GPT_3_MODELS = ("gpt-3.5-turbo", "gpt-3.5-turbo-0301")
 GPT_4_MODELS = ("gpt-4", "gpt-4-0314")
 GPT_4_32K_MODELS = ("gpt-4-32k", "gpt-4-32k-0314")
@@ -42,7 +44,7 @@ class OpenAIHelper:
         self.conversations: dict[int: list] = {}  # {chat_id: history}
         self.last_updated: dict[int: datetime] = {}  # {chat_id: last_update_timestamp}
 
-    def get_conversation_stats(self, chat_id: int) -> tuple[int, int]:
+    def get_conversation_stats(self, chat_id: int) -> Tuple[int, int]:
         """
         Gets the number of messages and tokens used in the conversation.
         :param chat_id: The chat ID
@@ -52,7 +54,7 @@ class OpenAIHelper:
             self.reset_chat_history(chat_id)
         return len(self.conversations[chat_id]), self.__count_tokens(self.conversations[chat_id])
 
-    async def get_chat_response(self, chat_id: int, query: str) -> tuple[str, str]:
+    async def get_chat_response(self, chat_id: int, query: str) -> Tuple[str, str]:
         """
         Gets a full response from the GPT model.
         :param chat_id: The chat ID
@@ -160,7 +162,7 @@ class OpenAIHelper:
         except Exception as e:
             raise Exception(f'⚠️ _An error has occurred_ ⚠️\n{str(e)}') from e
 
-    async def generate_image(self, prompt: str) -> tuple[str, str]:
+    async def generate_image(self, prompt: str) -> Tuple[str, str]:
         """
         Generates an image from the given prompt using DALL·E model.
         :param prompt: The prompt to send to the model

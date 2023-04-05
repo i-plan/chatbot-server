@@ -12,8 +12,10 @@ from telegram.ext import ApplicationBuilder, ContextTypes, CommandHandler, Messa
     filters, InlineQueryHandler, Application, CallbackContext
 
 from pydub import AudioSegment
-from openai_helper import OpenAIHelper
-from usage_tracker import UsageTracker
+from typing import List
+
+from app.openai_helper import OpenAIHelper
+from app.usage_tracker import UsageTracker
 
 
 def message_text(message: Message) -> str:
@@ -742,7 +744,7 @@ class ChatGPTTelegramBot:
 
         return True
 
-    def split_into_chunks(self, text: str, chunk_size: int = 4096) -> list[str]:
+    def split_into_chunks(self, text: str, chunk_size: int = 4096) -> List[str]:
         """
         Splits a string into chunks of a given size.
         """
