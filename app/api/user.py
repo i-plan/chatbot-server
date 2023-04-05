@@ -78,6 +78,13 @@ class UserApi(Resource):
             d = request.get_json()
             openid = self.get_openid(d['code'])
             c = self.get_chat_users()
+            if not openid:
+                l.i("not openid,400 获取失败")
+                return jsonify({
+                    'result': {
+                        'code': 400,
+                        'msg': "获取失败"
+                    }})
             u = c.find_one({'openid': openid})
             if u:
                 l.i("200 u已存在")
