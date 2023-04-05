@@ -116,9 +116,9 @@ class UserApi(Resource):
         url += "&grant_type=authorization_code"
         url += "&connect_redirect=1"
         response = requests.get(url)
-        d = response.json()
+        d: dict = response.json()
         try:
-            return d['openid']
+            return d.get('openid')
         except Exception as e:
-            l.i(d,auth_code)
+            l.i(d, auth_code)
             return None
