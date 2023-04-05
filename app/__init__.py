@@ -1,4 +1,5 @@
 import os
+from datetime import timedelta
 
 from flask import Flask, current_app
 from flask_login import LoginManager
@@ -7,12 +8,12 @@ from app import api, storage
 from flask_wtf.csrf import CSRFProtect
 from app.config import ProductionConfig
 from app.config import DevelopmentConfig
+from app.lrucache import LRUCache
 from app.storage.user import AnonymousUser, User
 from app.util import l
 from app.storage import user as user_dao
 
 csrf_protect = CSRFProtect()
-
 
 def flask_login_init(app):
     csrf_protect.init_app(app)
@@ -44,6 +45,7 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     app = Flask(__name__, instance_relative_config=True)
     # 优先从文件区配置，有利于动态改变正在运行的app配置
     app.config['UPLOAD_FOLDER'] = app.instance_path
+    app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
     if config_file:
         l.i("读取config_file")
         app.config.from_pyfile(config_file, silent=True)
@@ -66,5 +68,5 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     # 初始化数据库
     storage.init(app)
     l.init(app)
-    flask_login_init(app)
+    # flask_login_init(app)
     return app

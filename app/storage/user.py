@@ -1,10 +1,13 @@
 from dataclasses import dataclass
 from datetime import datetime
 
+import requests
 from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
+from pymongo import collection
 
-from app.storage import DbModel, DbColumn, DbInteger, DbString, DbDateTime, dbSession
+from app.storage import DbModel, DbColumn, DbInteger, DbString, DbDateTime, dbSession, get_mongo
+from app.util import l
 
 
 @dataclass
@@ -120,3 +123,8 @@ def get(**kwargs):
 
 def query(*where, **kwargs):
     return User.query.filter(where) if where else User.query.filter_by(**kwargs)
+
+
+def get_chat_users()->collection.Collection:
+    mongodb = get_mongo().cx.chatai
+    return mongodb['chat_users']

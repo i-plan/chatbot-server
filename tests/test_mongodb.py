@@ -26,3 +26,6 @@ if 'chat_msgs_ban' not in cs:
 
 # db.chat_users.insert_one({'openid': "菜鸟教程", 'userInfo': {}})
 # db.mycol2.insert({"name": "菜鸟教程"})
+db.chat_users.update_one({'openid': 'oh1Hz5DfxK54QoSEoPmaCrtA8Ch4'}, {'$inc': {'usage', 4}})
+for doc in db.chat_users.find():
+    print(doc)

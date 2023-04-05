@@ -29,13 +29,14 @@ class ProductionConfig(Config):
     """Uses production database server."""
     ENV = 'prod'
     DB_SERVER = '192.168.19.32'
-    SECRET_KEY = b'\xfd\xdec\xf4+\r\xef\x81#Qe\xc2\xad5\x89\xa2'
+    SECRET_KEY = b'A\x06\xb8\xe5\x00\n\xdf\xeee\xb8\xdf\xc9\xef\xfb\xeb\xde\xd8r\xc6X\x8b\rs\x03'
 
 
 class DevelopmentConfig(Config):
     ENV = 'dev'
     DEBUG = True
     DB_SERVER = 'localhost'
+    SECRET_KEY = b'A\x06\xb8\xe5\x00\n\xdf\xeee\xb8\xdf\xc9\xef\xfb\xeb\xde\xd8r\xc6X\x8b\rs\x03'
 
 
 class TestingConfig(Config):

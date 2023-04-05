@@ -3,13 +3,17 @@ import json
 import requests
 from flask import jsonify, request, current_app
 from flask_restful import Resource
+
+from app.api.wx_auth import get_openid
 from app.storage import get_mongo
 from app.form.user import RegistrationForm
 from app.storage import user as user_dao
 
 from sqlalchemy.ext.declarative import DeclarativeMeta
 
+from app.storage.user import get_chat_users
 from app.util import l
+from app.util.login_helper import auth
 
 
 class AlchemyEncoder(json.JSONEncoder):
@@ -32,41 +36,34 @@ class AlchemyEncoder(json.JSONEncoder):
 
 
 class UserApi(Resource):
-    def get(self, user_id=None):
+    @auth
+    def get(self, *args, **kw):
         # print(json.dumps(User.query.all(),cls= AlchemyEncoder))
         # return jsonify({
         #     'code': 1,
         #     'data': user_dao.get(id=user_id) if user_id else user_dao.get()
         # })
-        auth_code = request.args['code']
-        openid = self.get_openid(auth_code)
-        if not openid:
-            l.i("not openid,400 获取失败")
-            return jsonify({
-                'result': {
-                    'code': 400,
-                    'msg': "获取失败"
-                }})
-
         with current_app.app_context():
-            c = self.get_chat_users()
+            c = get_chat_users()
+            openid = kw.get('openid')
             u = c.find_one({'openid': openid}, {'_id': False})
             if not u:
-                l.i("not u , 401 未注册")
+                l.i("用户不存在")
                 return jsonify({
                     'result': {
                         'code': 401,
-                        'msg': "未注册"
+                        'msg': "用户不存在"
                     }})
-        l.i("200 获取成功")
-        return jsonify({
-            'result': {
-                'code': 200,
-                'msg': "获取成功",
-                'data': json.dumps(u)
-            }})
+            l.i("200 获取成功")
+            return jsonify({
+                'result': {
+                    'code': 200,
+                    'msg': "获取成功",
+                    'data': json.dumps(u)
+                }})
 
-    def post(self, user_id=None, action=None):
+    @auth
+    def post(self, user_id=None, action=None,*args, **kw):
         # form = RegistrationForm(request.form, csrf=False)
         # # 校验
         # if form.validate_on_submit():
@@ -75,16 +72,8 @@ class UserApi(Resource):
         #     return jsonify(u)
         # return jsonify(form.errors)
         with current_app.app_context():
-            d = request.get_json()
-            openid = self.get_openid(d['code'])
-            c = self.get_chat_users()
-            if not openid:
-                l.i("not openid,400 获取失败")
-                return jsonify({
-                    'result': {
-                        'code': 400,
-                        'msg': "获取失败"
-                    }})
+            openid = kw.get('openid')
+            c = get_chat_users()
             u = c.find_one({'openid': openid})
             if u:
                 l.i("200 u已存在")
@@ -94,8 +83,7 @@ class UserApi(Resource):
                         'msg': "已存在",
                         'inserted_id': str(u['_id'])
                     }})
-
-            ret = c.insert_one({'openid': openid, 'userInfo': d['userInfo']})
+            ret = c.insert_one({'openid': openid, 'usage': 1, 'userInfo': request.get_json()})
             l.i("200 注册成功")
             return jsonify({
                 'result': {
@@ -110,22 +98,3 @@ class UserApi(Resource):
     def delete(self, user_id):
         ret = user_dao.remove(id=user_id)
         return "删除成功" if ret == 1 else "删除失败"
-
-    def get_chat_users(self):
-        mongodb = get_mongo().cx.chatai
-        return mongodb['chat_users']
-
-    def get_openid(self, auth_code):
-        url = "https://api.weixin.qq.com/sns/jscode2session"
-        url += "?appid=wxf12c64ae66740127"
-        url += "&secret=299b42c42daebe0ac0c779e43c74946a"
-        url += f"&js_code={auth_code}"
-        url += "&grant_type=authorization_code"
-        url += "&connect_redirect=1"
-        response = requests.get(url)
-        d: dict = response.json()
-        try:
-            return d.get('openid')
-        except Exception as e:
-            l.i(d, auth_code)
-            return None
