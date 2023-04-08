@@ -20,7 +20,7 @@ def init(csrf_protect,app: Flask):
     api.add_resource(chat.ChatAPI,'/api/chat/<string:action>', endpoint='chat')
 
     async def main():
-        async with serve(chat.ChatAPI.onMessage, "0.0.0.0", 8765):
+        async with serve(chat.ChatAPI.onMessage, "0.0.0.0", 9000):
             await asyncio.Future()  # run forever
 
     asyncio.run(main())
