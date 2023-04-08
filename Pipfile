@@ -27,7 +27,7 @@ tiktoken = "*"
 pydub = "*"
 flask-pymongo = "*"
 coloredlogs = "*"
+python-dotenv = "*"
 
 [dev-packages]
-python-dotenv = "*"
 gunicorn = "*"
