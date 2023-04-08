@@ -11,7 +11,6 @@ import openai
 from app.api.wx_auth import get_openid
 from app.storage.user import get_chat_users
 from app.util import l
-from app.util.login_helper import auth
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 # https://github.com/justjavac/openai-proxy
@@ -23,7 +22,7 @@ use_limit = 5
 class ChatAPI(Resource):
     actions = ['txt']
 
-    @auth
+    # @auth
     def post(self, **kw):
         """
         /chat/txt
@@ -31,7 +30,8 @@ class ChatAPI(Resource):
         """
         if kw['action'] in self.actions:
             self_action = getattr(self, kw['action'].lower())
-            return self_action(kw.get('openid'))
+            # return self_action(kw.get('openid'))
+            return self_action(request.headers.get('X-WX-OPENID'))
         else:
             abort(404)
 

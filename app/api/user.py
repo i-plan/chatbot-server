@@ -13,7 +13,6 @@ from sqlalchemy.ext.declarative import DeclarativeMeta
 
 from app.storage.user import get_chat_users
 from app.util import l
-from app.util.login_helper import auth
 
 
 class AlchemyEncoder(json.JSONEncoder):
@@ -36,7 +35,7 @@ class AlchemyEncoder(json.JSONEncoder):
 
 
 class UserApi(Resource):
-    @auth
+    # @auth
     def get(self, *args, **kw):
         # print(json.dumps(User.query.all(),cls= AlchemyEncoder))
         # return jsonify({
@@ -45,7 +44,8 @@ class UserApi(Resource):
         # })
         with current_app.app_context():
             c = get_chat_users()
-            openid = kw.get('openid')
+            openid = request.headers.get('X-WX-OPENID')
+            # openid = kw.get('openid')
             u = c.find_one({'openid': openid}, {'_id': False})
             if not u:
                 l.i("用户不存在")
@@ -62,7 +62,7 @@ class UserApi(Resource):
                     'data': json.dumps(u)
                 }})
 
-    @auth
+    # @auth
     def post(self, user_id=None, action=None,*args, **kw):
         # form = RegistrationForm(request.form, csrf=False)
         # # 校验
@@ -72,7 +72,8 @@ class UserApi(Resource):
         #     return jsonify(u)
         # return jsonify(form.errors)
         with current_app.app_context():
-            openid = kw.get('openid')
+            # openid = kw.get('openid')
+            openid = request.headers.get('X-WX-OPENID')
             c = get_chat_users()
             u = c.find_one({'openid': openid})
             if u:
