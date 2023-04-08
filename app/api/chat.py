@@ -3,6 +3,7 @@ openai api: https://platform.openai.com/docs/api-reference/chat/create?lang=pyth
 """
 import datetime
 import json
+import time
 
 from flask_restful import Resource, abort
 from flask import request, make_response, jsonify, current_app, session
@@ -50,7 +51,8 @@ class ChatAPI(Resource):
             usage = u.get('usage', 1)
             print(usage, usage % use_limit, usage // use_limit)
             if not usage % use_limit:
-                if datetime.datetime.now() - u['latest_usage_time'] < datetime.timedelta(days = 1) :
+                latest_usage_time = time.mktime(time.strptime(u['latest_usage_time'], "%Y-%m-%d %H:%M:%S"))
+                if datetime.datetime.now() - datetime.datetime.fromtimestamp(latest_usage_time)  < datetime.timedelta(days = 1) :
                     # 限制访问
                     return jsonify({
                         'result': {
@@ -61,7 +63,7 @@ class ChatAPI(Resource):
                 else:
                     u['usage'] = 1
             u['usage'] += 1
-            u['latest_usage_time'] = datetime.datetime.now()
+            u['latest_usage_time'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
             get_chat_users().update_one({'openid': openid}, {'$set': u})
             d = request.get_json()
             l.i(f"txt question:{d['content']}")
@@ -89,3 +91,7 @@ class ChatAPI(Resource):
             #         """
             #     }
             # })
+    @staticmethod
+    async def onMessage(websocket):
+        async for message in websocket:
+            await websocket.send(message)

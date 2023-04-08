@@ -33,6 +33,7 @@ flask-pymongo = "*"
 coloredlogs = "*"
 python-dotenv = "*"
 gunicorn = "*"
+websockets = "^11.0.1"
 
 
 [[tool.poetry.source]]

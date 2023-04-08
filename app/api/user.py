@@ -1,4 +1,5 @@
 import json
+from datetime import datetime
 
 import requests
 from flask import jsonify, request, current_app
@@ -84,7 +85,7 @@ class UserApi(Resource):
                         'msg': "已存在",
                         'inserted_id': str(u['_id'])
                     }})
-            ret = c.insert_one({'openid': openid, 'usage': 1, 'userInfo': request.get_json()})
+            ret = c.insert_one({'openid': openid, 'usage': 1,'latest_usage_time' : datetime.now().strftime('%Y-%m-%d %H:%M:%S'),'userInfo': request.get_json()})
             l.i("200 注册成功")
             return jsonify({
                 'result': {
