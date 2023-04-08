@@ -23,6 +23,9 @@ pipenv update  # 更新所有包的依赖项
 pipenv update <包名>  # 更新指定的包的依赖项
 exit  # 退出当前虚拟环境
 
+pyenv install 3.8
+pyenv local 3.8  # Activate Python 3.9 for the current project
+poetry install
 poetry export -f requirements.txt --output requirements.txt
 ```
 
