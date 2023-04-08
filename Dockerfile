@@ -27,7 +27,7 @@ WORKDIR /app
 RUN python3 --version
 RUN  pip install --upgrade pip \
 && pip install pipx \
-&& pipx install poetry \
+&& pipx install poetry==1.4.0 \
 && poetry --version \
 && poetry install \
 && poetry export -f requirements.txt --output requirements.txt \
