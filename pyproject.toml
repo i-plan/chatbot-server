@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{include = "app"}]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.8.15"
 flask = "^2.2.3"
 sentry-sdk = "^1.19.1"
 flask-restful = "^0.3.9"
