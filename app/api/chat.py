@@ -1,6 +1,7 @@
 """
 openai api: https://platform.openai.com/docs/api-reference/chat/create?lang=python
 """
+import datetime
 import json
 
 from flask_restful import Resource, abort
@@ -14,7 +15,7 @@ from app.util import l
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 # https://github.com/justjavac/openai-proxy
-# openai.api_base = "https://closeai.deno.dev/v1"
+openai.api_base = "https://closeai.deno.dev/v1"
 
 use_limit = 5
 
@@ -49,14 +50,18 @@ class ChatAPI(Resource):
             usage = u.get('usage', 1)
             print(usage, usage % use_limit, usage // use_limit)
             if not usage % use_limit:
-                # 限制访问
-                return jsonify({
-                    'result': {
-                        'code': 403,
-                        'msg': f'只能使用{use_limit}次，明天加重新赋予你{use_limit}次'
-                    }
-                })
+                if datetime.datetime.now() - u['latest_usage'] < datetime.timedelta(days = 1) :
+                    # 限制访问
+                    return jsonify({
+                        'result': {
+                            'code': 403,
+                            'msg': f'只能使用{use_limit}次，明天加重新赋予你{use_limit}次'
+                        }
+                    })
+                else:
+                    u['usage'] = 1
             u['usage'] += 1
+            u['latest_usage'] = datetime.datetime.now()
             get_chat_users().update_one({'openid': openid}, {'$set': u})
             d = request.get_json()
             l.i(f"txt question:{d['content']}")
