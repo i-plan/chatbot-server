@@ -22,6 +22,8 @@ pipenv update --outdated  # 查看所有需要更新的依赖项
 pipenv update  # 更新所有包的依赖项
 pipenv update <包名>  # 更新指定的包的依赖项
 exit  # 退出当前虚拟环境
+
+poetry export -f requirements.txt --output requirements.txt
 ```
 
 ## 依赖获取
