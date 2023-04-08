@@ -31,7 +31,7 @@ RUN  pip install --upgrade pip \
 && python3 install-poetry.py --version 1.4.0 \
 && $POETRY_HOME/bin/poetry --version \
 && $POETRY_HOME/bin/poetry install \
-&& $POETRY_HOME/bin/poetry export -f requirements.txt --output requirements.txt
+&& $POETRY_HOME/bin/poetry export -f requirements.txt --output requirements.txt \
 # pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
 && pip install --user -r requirements.txt
 
