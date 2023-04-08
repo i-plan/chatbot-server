@@ -1,13 +1,14 @@
 FROM python:3.8.13
 
-WORKDIR /chatbot-server
-
 # Copy src files
-COPY .. .
+COPY . /app
 #ADD . /SpacecraftServer4Flask
 
 # 使用 HTTPS 协议访问容器云调用证书安装
 RUN apk add ca-certificates
+
+# 设定当前的工作目录
+WORKDIR /app
 
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
