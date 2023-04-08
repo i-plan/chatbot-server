@@ -50,7 +50,7 @@ class ChatAPI(Resource):
             usage = u.get('usage', 1)
             print(usage, usage % use_limit, usage // use_limit)
             if not usage % use_limit:
-                if datetime.datetime.now() - u['latest_usage'] < datetime.timedelta(days = 1) :
+                if datetime.datetime.now() - u['latest_usage_time'] < datetime.timedelta(days = 1) :
                     # 限制访问
                     return jsonify({
                         'result': {
@@ -61,7 +61,7 @@ class ChatAPI(Resource):
                 else:
                     u['usage'] = 1
             u['usage'] += 1
-            u['latest_usage'] = datetime.datetime.now()
+            u['latest_usage_time'] = datetime.datetime.now()
             get_chat_users().update_one({'openid': openid}, {'$set': u})
             d = request.get_json()
             l.i(f"txt question:{d['content']}")
