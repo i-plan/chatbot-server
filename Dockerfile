@@ -13,7 +13,8 @@ WORKDIR /app
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip install --user -r requirements.txt
+RUN  pip install --upgrade pip \
+&& pip install --user -r requirements.txt
 ## package
 #RUN pipenv install setuptools wheel --dev
 #RUN python setup.py sdist bdist_wheel
@@ -25,5 +26,5 @@ EXPOSE 9000
 # 执行启动命令
 # 写多行独立的CMD命令是错误写法！只有最后一行CMD命令会被执行，之前的都会被忽略，导致业务报错。
 # 请参考[Docker官方文档之CMD命令](https://docs.docker.com/engine/reference/builder/#cmd)
-CMD ["python3", "run.py", "0.0.0.0", "9000"]
+ENTRYPOINT ["python3","main.py"]
 #CMD ["gunicorn","-c","gunicorn.conf.py","main:app"]
