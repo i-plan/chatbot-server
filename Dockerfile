@@ -13,7 +13,7 @@ WORKDIR /app
 # Install depsrequirements.txt
 #RUN   pip3 install pipenv && pipenv install
 #RUN pip3 install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
-RUN pip install -r requirements.txt
+RUN pip install --user -r requirements.txt
 ## package
 #RUN pipenv install setuptools wheel --dev
 #RUN python setup.py sdist bdist_wheel
