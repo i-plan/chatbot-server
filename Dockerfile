@@ -28,6 +28,7 @@ RUN python3 --version
 RUN  pip install --upgrade pip \
 && pip install pipx \
 && pipx install poetry \
+&& poetry --version \
 && poetry install \
 && poetry export -f requirements.txt --output requirements.txt \
 # pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
