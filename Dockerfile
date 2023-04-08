@@ -13,7 +13,7 @@ RUN apk add ca-certificates
 # 选用国内镜像源以提高下载速度
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.tencent.com/g' /etc/apk/repositories \
 # 安装python3
-&& apk add --update --no-cache python3 py3-pip \
+&& apk add --update --no-cache python3=~3.10 py3-pip \
 && rm -rf /var/cache/apk/*
 
 # 拷贝当前项目到/app目录下（.dockerignore中文件除外）
@@ -26,11 +26,6 @@ WORKDIR /app
 # 选用国内镜像源以提高下载速度
 RUN python3 --version
 RUN  pip install --upgrade pip \
-&& pip install pipx \
-&& pipx install poetry==1.4.0 \
-&& poetry --version \
-&& poetry install \
-&& poetry export -f requirements.txt --output requirements.txt \
 # pip install scipy 等数学包失败，可使用 apk add py3-scipy 进行， 参考安装 https://pkgs.alpinelinux.org/packages?name=py3-scipy&branch=v3.13
 && pip install --user -r requirements.txt
 
