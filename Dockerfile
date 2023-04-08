@@ -5,7 +5,7 @@ COPY . /app
 #ADD . /SpacecraftServer4Flask
 
 # 使用 HTTPS 协议访问容器云调用证书安装
-RUN apk add ca-certificates
+RUN #apk add ca-certificates
 
 # 设定当前的工作目录
 WORKDIR /app
