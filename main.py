@@ -88,12 +88,23 @@ def telegram_bot():
     telegram_bot = ChatGPTTelegramBot(config=telegram_config, openai=openai_helper)
     telegram_bot.run()
 
+import asyncio
+from websockets.server import serve
+
+async def echo(websocket):
+    async for message in websocket:
+        await websocket.send(message)
+
+async def main():
+    async with serve(echo, '0.0.0.0', 9000):
+        await asyncio.Future()  # run forever
+
 
 
 if __name__ == '__main__':
     # threading.Thread(target=telegram_bot).start()
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
-    # socketio.init_app(app)
-    # socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
+    socketio.init_app(app)
+    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
     app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
