@@ -32,7 +32,6 @@ def disconnect():
 # sio.connect('https://chatbot-server-production-cf19.up.railway.app')
 # sio.connect('wss://chatbot-server-production-cf19.up.railway.app')
 # sio.connect('https://flask-c8d3-prod-1gj8r0g67f17c052-1309166807.ap-shanghai.run.wxcloudrun.com')
-# sio.connect('wss://flask-c8d3-prod-1gj8r0g67f17c052-1309166807.ap-shanghai.run.wxcloudrun.com/')
-sio.connect("wss://express-v4zs-prod-1gj8r0g67f17c052-1309166807.ap-shanghai.run.wxcloudrun.com")
+sio.connect('wss://flask-c8d3-prod-1gj8r0g67f17c052-1309166807.ap-shanghai.run.wxcloudrun.com/')
 # sio.connect('https://starstech.cloud')
 sio.emit('chat', {'message': 'I am client'})

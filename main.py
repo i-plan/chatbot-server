@@ -1,5 +1,4 @@
 from app import create_app
-from app.api.chat import socketio
 import logging
 import os
 
@@ -7,6 +6,7 @@ from dotenv import load_dotenv
 
 from app.openai_helper import OpenAIHelper, default_max_tokens
 from app.telegram_bot import ChatGPTTelegramBot
+from app.api.chat import  sock
 
 '''
 - 127.0.0.1：回环地址。该地址指电脑本身，主要预留测试本机的TCP/IP协议是否正常。只要使用这个地址发送数据，则数据包不会出现在网络传输过程中。
@@ -28,7 +28,7 @@ IPV4中，0.0.0.0地址被用于表示一个无效的，未知的或者不可用
 启动生产环境服务器：python3 -m app
 '''
 app = create_app(config_file='prod_config.py')
-
+sock.init_app(app)
 
 def telegram_bot():
     # Read .env file
@@ -88,23 +88,8 @@ def telegram_bot():
     telegram_bot = ChatGPTTelegramBot(config=telegram_config, openai=openai_helper)
     telegram_bot.run()
 
-import asyncio
-from websockets.server import serve
-
-async def echo(websocket):
-    async for message in websocket:
-        await websocket.send(message)
-
-async def main():
-    async with serve(echo, '0.0.0.0', 3000):
-        await asyncio.Future()  # run forever
-
-
-
 if __name__ == '__main__':
     # threading.Thread(target=telegram_bot).start()
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
-    socketio.init_app(app)
-    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=3000),debug=True,allow_unsafe_werkzeug=True)
-    # app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
+    app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=3000))

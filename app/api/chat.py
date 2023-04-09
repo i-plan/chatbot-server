@@ -8,11 +8,10 @@ from flask_restful import Resource, abort
 from flask import request, make_response, jsonify, current_app, session
 import os
 import openai
-
+from flask_sock import Sock
 from app.api.wx_auth import get_openid
 from app.storage.user import get_chat_users
 from app.util import l
-from flask_socketio import SocketIO, emit
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 # https://github.com/justjavac/openai-proxy
@@ -51,7 +50,8 @@ class ChatAPI(Resource):
             print(usage, usage % use_limit, usage // use_limit)
             if not usage % use_limit:
                 latest_usage_time = time.mktime(time.strptime(u['latest_usage_time'], "%Y-%m-%d %H:%M:%S"))
-                if datetime.datetime.now() - datetime.datetime.fromtimestamp(latest_usage_time)  < datetime.timedelta(days = 1) :
+                if datetime.datetime.now() - datetime.datetime.fromtimestamp(latest_usage_time) < datetime.timedelta(
+                        days=1):
                     # 限制访问
                     return jsonify({
                         'result': {
@@ -90,16 +90,13 @@ class ChatAPI(Resource):
             #         """
             #     }
             # })
-    @staticmethod
-    async def onMessage(websocket):
-        async for message in websocket:
-            await websocket.send(message)
 
 
-socketio = SocketIO()
+sock = Sock()
 
 
-@socketio.on('chat')
-def handle_message(data):
-    print(f'received message: {data}')
-    emit('chat', {'message': 'I am server'})
+@sock.route('/chat')
+def chat(ws):
+    while True:
+        data = ws.receive()
+        ws.send(data)

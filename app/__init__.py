@@ -46,6 +46,7 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     # 优先从文件区配置，有利于动态改变正在运行的app配置
     app.config['UPLOAD_FOLDER'] = app.instance_path
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
+    app.config['SOCK_SERVER_OPTIONS'] = {'ping_interval': 25}
     if config_file:
         l.i("读取config_file")
         app.config.from_pyfile(config_file, silent=True)
