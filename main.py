@@ -106,5 +106,5 @@ if __name__ == '__main__':
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
     socketio.init_app(app)
-    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
+    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000),debug=True)
     # app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
