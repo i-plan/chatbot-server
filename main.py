@@ -92,4 +92,4 @@ if __name__ == '__main__':
     # threading.Thread(target=telegram_bot).start()
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
-    app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=3000))
+    app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=3000),debug=True)
