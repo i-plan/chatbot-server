@@ -106,6 +106,9 @@ async-timeout==4.0.2 ; python_version >= "3.10" and python_version < "4.0" \
 attrs==22.2.0 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:29e95c7f6778868dbd49170f98f8818f78f3dc5e0e37c0b1f474e3561b240836 \
     --hash=sha256:c9227bfc2f01993c03f68db37d1d15c9690188323c067c641f1a35ca58185f99
+bidict==0.22.1 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:1e0f7f74e4860e6d0943a05d4134c63a2fad86f3d4732fb265bd79e4e856d81d \
+    --hash=sha256:6ef212238eb884b664f28da76f33f1d28b260f665fc737b413b287d5487d1e7b
 blinker==1.6 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:5874afe21df4bae8885d31a0a6c4b5861910a575eae6176f051fbb9a6571481b \
     --hash=sha256:eeebd5dfc782e1817fe4261ce79936c8c8cefb90d685caf50cec458029f773c1
@@ -214,6 +217,9 @@ flask-pymongo==2.3.0 ; python_version >= "3.10" and python_version < "4.0" \
 flask-restful==0.3.9 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:4970c49b6488e46c520b325f54833374dc2b98e211f1b272bd4b0c516232afe2 \
     --hash=sha256:ccec650b835d48192138c85329ae03735e6ced58e9b2d9c2146d6c84c06fa53e
+flask-socketio==5.3.3 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:1f6a5afd68a4bf01140ef891c24f04ad0c52487d4829281a42eca0a35a204acf \
+    --hash=sha256:8f47762dd1b76916cbc01f4f8661dd4670dbeb418ca0e1aaedab909b85efee5d
 flask-sqlalchemy==3.0.3 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:2764335f3c9d7ebdc9ed6044afaf98aae9fa50d7a074cef55dde307ec95903ec \
     --hash=sha256:add5750b2f9cd10512995261ee2aa23fab85bd5626061aa3c564b33bb4aa780a
@@ -679,6 +685,12 @@ python-dateutil==2.8.2 ; python_version >= "3.10" and python_version < "4.0" \
 python-dotenv==1.0.0 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:a8df96034aae6d2d50a4ebe8216326c61c3eb64836776504fcca410e5937a3ba \
     --hash=sha256:f5971a9226b701070a4bf2c38c89e5a3f0d64de8debda981d1db98583009122a
+python-engineio==4.4.0 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:11f9c35b775fe70e0a25f67b16d5b69fbfafc368cdd87eeb6f4135a475c88e50 \
+    --hash=sha256:bcc035c70ecc30acc3cfd49ef19aca6c51fa6caaadd0fa58c2d7480f50d04cf2
+python-socketio==5.8.0 ; python_version >= "3.10" and python_version < "4.0" \
+    --hash=sha256:7adb8867aac1c2929b9c1429f1c02e12ca4c36b67c807967393e367dfbb01441 \
+    --hash=sha256:e714f4dddfaaa0cb0e37a1e2deef2bb60590a5b9fea9c343dd8ca5e688416fd9
 python-telegram-bot==20.2 ; python_version >= "3.10" and python_version < "4.0" \
     --hash=sha256:4d1d4b643ce158aa17a0987b84005eaf25fe0ce8b38fd234099594985611c198 \
     --hash=sha256:d0aa53e1f06d7cb7919cc0e2d6c81a02d968fc29921aeaa962edd1efb816a9bd
