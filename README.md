@@ -34,7 +34,8 @@ poetry export -f requirements.txt --output requirements.txt
 - pipenv install
 - docker-compose up -d(influxdb：root/12345678、grafana)
 
-
+## TLS/SSL
+自签名文件生成：`openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365`
 
 # `项目部署`
 
