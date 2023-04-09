@@ -36,11 +36,11 @@ gunicorn = "*"
 flask-sock = "^0.6.0"
 
 
-[[tool.poetry.source]]
-name = "tsinghua"
-url = "https://pypi.tuna.tsinghua.edu.cn/simple"
-default = false
-secondary = false
+#[[tool.poetry.source]]
+#name = "tsinghua"
+#url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+#default = false
+#secondary = false
 
 [build-system]
 requires = ["poetry-core"]
