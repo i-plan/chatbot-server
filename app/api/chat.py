@@ -2,7 +2,6 @@
 openai api: https://platform.openai.com/docs/api-reference/chat/create?lang=python
 """
 import datetime
-import json
 import time
 
 from flask_restful import Resource, abort
@@ -13,11 +12,11 @@ import openai
 from app.api.wx_auth import get_openid
 from app.storage.user import get_chat_users
 from app.util import l
+from flask_socketio import SocketIO, emit
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 # https://github.com/justjavac/openai-proxy
 openai.api_base = "https://closeai.deno.dev/v1"
-
 use_limit = 5
 
 
@@ -95,3 +94,12 @@ class ChatAPI(Resource):
     async def onMessage(websocket):
         async for message in websocket:
             await websocket.send(message)
+
+
+socketio = SocketIO()
+
+
+@socketio.on('chat')
+def handle_message(data):
+    print(f'received message: {data}')
+    emit('chat', {'message': 'I am server'})

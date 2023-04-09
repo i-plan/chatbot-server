@@ -1,4 +1,5 @@
 from app import create_app
+from app.api.chat import socketio
 import logging
 import os
 
@@ -88,8 +89,10 @@ def telegram_bot():
     telegram_bot.run()
 
 
+
 if __name__ == '__main__':
     # threading.Thread(target=telegram_bot).start()
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
-    app.run(host= os.getenv("HOST", default='0.0.0.0'),port=os.getenv("PORT", default=9000))
+    socketio.init_app(app)
+    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))

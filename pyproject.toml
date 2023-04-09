@@ -34,6 +34,8 @@ coloredlogs = "*"
 python-dotenv = "*"
 gunicorn = "*"
 websockets = "^11.0.1"
+flask-socketio = "^5.3.3"
+python-socketio = "^5.8.0"
 
 
 [[tool.poetry.source]]
