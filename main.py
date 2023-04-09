@@ -96,7 +96,7 @@ async def echo(websocket):
         await websocket.send(message)
 
 async def main():
-    async with serve(echo, '0.0.0.0', 9000):
+    async with serve(echo, '0.0.0.0', 3000):
         await asyncio.Future()  # run forever
 
 
@@ -106,5 +106,5 @@ if __name__ == '__main__':
     # app = create_app(config="settings.yaml")
     print("正式服务启动" + "." * 100)
     socketio.init_app(app)
-    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000),debug=True,allow_unsafe_werkzeug=True)
+    socketio.run(app, host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=3000),debug=True,allow_unsafe_werkzeug=True)
     # app.run(host=os.getenv("HOST", default='0.0.0.0'), port=os.getenv("PORT", default=9000))
