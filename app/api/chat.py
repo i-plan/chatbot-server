@@ -22,7 +22,7 @@ use_limit = 5
 sock = Sock()
 
 
-@sock.route('/chat')
+@sock.route('/')
 def chat(ws):
     while True:
         d = json.loads(ws.receive())
