@@ -95,7 +95,7 @@ class ChatAPI(Resource):
 sock = Sock()
 
 
-@sock.route('/chat')
+@sock.route('/')
 def chat(ws):
     while True:
         data = ws.receive()
