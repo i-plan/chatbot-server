@@ -11,7 +11,7 @@ import os
 import openai
 from flask_sock import Sock
 
-from app import LRUCache
+from app.lrucache import LRUCache
 from app.api.wx_auth import get_openid
 from app.storage.user import get_chat_users
 from app.util import l
