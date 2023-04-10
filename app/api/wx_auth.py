@@ -10,7 +10,7 @@ def get_openid(auth_code):
     url += f"&js_code={auth_code}"
     url += "&grant_type=authorization_code"
     url += "&connect_redirect=1"
-    response = requests.get(url)
+    response = requests.get(url,verify=False)
     d: dict = response.json()
     try:
         return d['openid']
