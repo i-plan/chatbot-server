@@ -25,7 +25,9 @@ sock = Sock()
 @sock.route('/chat')
 def chat(ws):
     while True:
-        d = json.loads(ws.receive())
+        data = ws.receive()
+        print(data)
+        d = json.loads(data)
         openid = get_openid(d['wxAuthCode'])
         if not openid:
             l.i("not openid,400 openid 为空，需要重新授权登录")
