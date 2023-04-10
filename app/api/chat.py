@@ -24,6 +24,8 @@ use_limit = 5
 sock = Sock()
 
 lrucache = LRUCache(4000)
+
+
 @sock.route('/chat')
 def chat(ws):
     while True:
