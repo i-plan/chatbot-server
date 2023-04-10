@@ -12,7 +12,7 @@ from app.lrucache import LRUCache
 from app.storage.user import AnonymousUser, User
 from app.util import l
 from app.storage import user as user_dao
-
+from app.api.chat import  sock
 csrf_protect = CSRFProtect()
 
 def flask_login_init(app):
@@ -43,6 +43,7 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     """
 
     app = Flask(__name__, instance_relative_config=True)
+    sock.init_app(app)
     # 优先从文件区配置，有利于动态改变正在运行的app配置
     app.config['UPLOAD_FOLDER'] = app.instance_path
     app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(days=7)
