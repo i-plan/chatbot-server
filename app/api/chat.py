@@ -75,30 +75,30 @@ def chatai(openid, content):
         get_chat_users().update_one({'openid': openid}, {'$set': u})
 
         l.i(f"txt question:{content}")
-        # completion = openai.ChatCompletion.create(
-        #     model="gpt-3.5-turbo",
-        #     messages=[{"role": "user", "content": content}])
-        # l.i(f"txt answer:{completion.choices[0].message['content']}")
-        # return jsonify({
-        #     'result': {
-        #         'code': 200,
-        #         'msg': completion.choices[0].message['content']
-        #     }
-        # })
-
-        return json.dumps({
+        completion = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": content}])
+        l.i(f"txt answer:{completion.choices[0].message['content']}")
+        return json.dump({
             'result': {
                 'code': 200,
-                'msg': """
-                後視鏡裏的世界 越來越遠的道別
-                你轉身向背 側臉還是很美
-                我用眼光去追 竟聽見你的淚
-                在車窗外面徘徊 是我錯失的機會
-                你站的方位 跟我中間隔著淚
-                街景一直在後退 你的崩潰在窗外零碎
-                """
+                'msg': completion.choices[0].message['content']
             }
         })
+
+        # return json.dumps({
+        #     'result': {
+        #         'code': 200,
+        #         'msg': """
+        #         後視鏡裏的世界 越來越遠的道別
+        #         你轉身向背 側臉還是很美
+        #         我用眼光去追 竟聽見你的淚
+        #         在車窗外面徘徊 是我錯失的機會
+        #         你站的方位 跟我中間隔著淚
+        #         街景一直在後退 你的崩潰在窗外零碎
+        #         """
+        #     }
+        # })
 
 
 class ChatAPI(Resource):
