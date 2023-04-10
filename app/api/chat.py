@@ -79,7 +79,7 @@ def chatai(openid, content):
             model="gpt-3.5-turbo",
             messages=[{"role": "user", "content": content}])
         l.i(f"txt answer:{completion.choices[0].message['content']}")
-        return json.dump({
+        return json.dumps({
             'result': {
                 'code': 200,
                 'msg': completion.choices[0].message['content']
