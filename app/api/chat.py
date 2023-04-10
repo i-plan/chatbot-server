@@ -10,6 +10,8 @@ from flask import request, make_response, jsonify, current_app, session
 import os
 import openai
 from flask_sock import Sock
+
+from app import LRUCache
 from app.api.wx_auth import get_openid
 from app.storage.user import get_chat_users
 from app.util import l
@@ -21,14 +23,17 @@ use_limit = 5
 
 sock = Sock()
 
-
+lrucache = LRUCache(4000)
 @sock.route('/chat')
 def chat(ws):
     while True:
-        data = ws.receive()
-        print(data)
-        d = json.loads(data)
-        openid = get_openid(d['wxAuthCode'])
+        d = json.loads(ws.receive())
+        openid = lrucache.get(d['wxAuthCode'])
+        print('1', d['wxAuthCode'], openid)
+        if not openid:
+            openid = get_openid(d['wxAuthCode'])
+            lrucache.put(d['wxAuthCode'], openid)
+            print('2', d['wxAuthCode'], openid)
         if not openid:
             l.i("not openid,400 openid 为空，需要重新授权登录")
             ws.send(json.dumps({
