@@ -49,19 +49,17 @@ class PassportAPI(Resource):
         form = MiniProgramLoginForm(f, csrf=False)
         if not form.validate_on_submit(): return jsonify(form.errors)
         code = form.code.data
-        username = form.username.data
         # d = get_session(code)
         d={"openid":"oh1Hz5DfxK54QoSEoPmaCrtA8Ch4"}
         try:
             u = user_dao.query(openid=d['openid']).first()
-            # 不存在就insert一条
-            # if not u: return jsonify({'message': f"登录失败,账号不存在{username} {code}"})
-            if not u:
-                user_info = form.form2dict()
-                user_info['openid'] = d['openid']
-                l.i(f'插入一条:{user_info}')
-                user_info['password'] = "asdfasdf"
-                u = user_dao.add(**user_info)
+            if not u: return jsonify({'message': f"登录失败,账号不存在{code}"})
+            # if not u:
+            #     user_info = form.form2dict()
+            #     user_info['openid'] = d['openid']
+            #     l.i(f'插入一条:{user_info}')
+            #     user_info['password'] = "asdfasdf"
+            #     u = user_dao.add(**user_info)
             remember = False
             if current_app.config.get("COOKIE_ENABLE"): remember = True
             login_user(u, remember=remember)
