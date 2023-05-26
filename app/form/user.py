@@ -59,3 +59,21 @@ class LoginForm(FlaskForm):
     email = StringField('email', [validators.Length(min=6, max=35),
                                   Regexp(r'^(.+)@(.+)\.(.+)', message='邮箱格式不正确')])
     password = PasswordField('Password', [validators.Length(min=6)])
+
+
+class MiniProgramLoginForm(FlaskForm):
+    username = StringField('Username', [validators.Length(min=1, max=50)])
+    # password = PasswordField('Password', [])
+    code = StringField('code', [validators.Length(min=1)])
+
+    def form2dict(self):
+        return {
+            'username': self.username.data,
+            # 'password': generate_password_hash(self.password.data),
+            # 'email': self.email.data,
+            # 'role': self.role.data if self.role.data else '',
+            'created_at': datetime.now(),
+            'created_at': datetime.now(),
+            'updated_at': datetime.now(),
+
+        }

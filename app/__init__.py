@@ -70,5 +70,5 @@ def create_app(config_file=None, config_object=ProductionConfig()):
     # 初始化数据库
     storage.init(app)
     l.init(app)
-    # flask_login_init(app)
+    flask_login_init(app)
     return app

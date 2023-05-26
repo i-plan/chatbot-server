@@ -26,7 +26,9 @@ class User(UserMixin, DbModel):
     username: str = DbColumn(DbString(50))
     password: str = DbColumn(DbString(50), nullable=False)
     is_email_verified: int = DbColumn(DbInteger, default=0)
-    email: str = DbColumn(DbString(50), unique=True, nullable=False)
+    email: str = DbColumn(DbString(50), unique=True, nullable=True)
+    mobile: str = DbColumn(DbString(50), unique=True, nullable=True)
+    openid: str = DbColumn(DbString(50), unique=True, nullable=True)
     avatar: str = DbColumn(DbString(100))
     role: str = DbColumn(DbString(10))
     status: int = DbColumn(DbInteger, default=1)
@@ -55,6 +57,8 @@ class User(UserMixin, DbModel):
             'username': self.username,
             'is_email_verified': self.is_email_verified,
             'email': self.email,
+            'mobile': self.mobile,
+            'openid': self.openid,
             'avatar': self.avatar_url(self.avatar),
             'status': self.status_mapping[self.status],
             'last_space': self.last_space,
