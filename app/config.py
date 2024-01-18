@@ -4,7 +4,7 @@
 import os
 
 
-class Config(object):
+class ProductionConfig:
     """Base config, uses staging database server."""
     DEBUG = False
     TESTING = False
@@ -12,7 +12,7 @@ class Config(object):
     # TEMPLATES_AUTO_RELOAD = None
     # MAX_COOKIE_SIZE = 10485760
     # MAX_CONTENT_LENGTH=None
-    DB_SERVER = '192.168.1.56'
+    DB_SERVER = '192.168.19.32'
     MONGO_URI = "mongodb://mongo:p5b67avO9383spNYAXYt@containers-us-west-32.railway.app:5746"
 
     @property
@@ -23,27 +23,3 @@ class Config(object):
     WTF_CSRF_ENABLED = False
     AVATAR_PATH = '/avatar/'
     COOKIE_ENABLE = False
-
-
-class ProductionConfig(Config):
-    """Uses production database server."""
-    ENV = 'prod'
-    DB_SERVER = '192.168.19.32'
-    SECRET_KEY = b'A\x06\xb8\xe5\x00\n\xdf\xeee\xb8\xdf\xc9\xef\xfb\xeb\xde\xd8r\xc6X\x8b\rs\x03'
-
-
-class DevelopmentConfig(Config):
-    ENV = 'dev'
-    DEBUG = True
-    DB_SERVER = 'localhost'
-    SECRET_KEY = b'A\x06\xb8\xe5\x00\n\xdf\xeee\xb8\xdf\xc9\xef\xfb\xeb\xde\xd8r\xc6X\x8b\rs\x03'
-
-
-class TestingConfig(Config):
-    ENV = 'test'
-    TESTING = True
-    DB_SERVER = 'localhost'
-    DATABASE_URI = 'sqlite:///:memory:'
-
-    # 登录cookie 防止退出浏览器重新登录
-    COOKIE_ENABLE = True

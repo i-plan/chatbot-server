@@ -7,7 +7,6 @@ from flask_login import LoginManager
 from app import api, storage
 from flask_wtf.csrf import CSRFProtect
 from app.config import ProductionConfig
-from app.config import DevelopmentConfig
 from app.lrucache import LRUCache
 from app.storage.user import AnonymousUser, User
 from app.util import l
