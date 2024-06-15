@@ -1,13 +1,9 @@
 import json
 from datetime import datetime
 
-import requests
 from flask import jsonify, request, current_app
 from flask_restful import Resource
 
-from app.api.wx_auth import get_openid
-from app.storage import get_mongo
-from app.form.user import RegistrationForm
 from app.storage import user as user_dao
 
 from sqlalchemy.ext.declarative import DeclarativeMeta

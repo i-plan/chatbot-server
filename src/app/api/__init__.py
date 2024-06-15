@@ -1,7 +1,8 @@
-from flask import Flask, render_template, jsonify, make_response, current_app
+from flask import Flask, make_response
 from flask_restful import Api, Resource
 
-from app.api import user, passport, chat
+from app.api import user
+from app.api import chat, passport
 
 
 class Ping(Resource):

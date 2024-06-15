@@ -7,7 +7,6 @@ from werkzeug.security import check_password_hash
 from app.form.user import LoginForm, MiniProgramLoginForm
 from app.storage import user as user_dao
 from app.util import l
-from app.api.wx_auth import get_session
 
 
 class PassportAPI(Resource):

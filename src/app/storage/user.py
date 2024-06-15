@@ -1,13 +1,11 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-import requests
 from flask import current_app
 from flask_login import UserMixin, AnonymousUserMixin
 from pymongo import collection
 
 from app.storage import DbModel, DbColumn, DbInteger, DbString, DbDateTime, dbSession, get_mongo
-from app.util import l
 
 
 @dataclass

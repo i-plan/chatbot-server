@@ -4,7 +4,7 @@ version = "1.0.0"
 description = ""
 authors = ["electrolyteJ <hawks.jamesf@gmail.com>"]
 readme = "README.md"
-packages = [{include = "app"}]
+packages = [{include = "app",from = "src"}]
 #[[tool.poetry.source]]
 #name = "tsinghua"
 #url = "https://pypi.tuna.tsinghua.edu.cn/simple"
@@ -16,7 +16,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.9"
 flask = "2.2.3"
 sentry-sdk = "1.19.1"
 flask-restful = "0.3.9"

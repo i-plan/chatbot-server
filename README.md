@@ -3,8 +3,9 @@
 包管理 |虚拟环境管理
 |---|---
 pip|venv/virtualenv/Virtualenvwrapper
-pipenv|pipenv
+pipenv|pipenv shell
 conda|conda
+poetry|poetry shell
 
 pipenv常用指令
 ```bash
@@ -22,11 +23,16 @@ pipenv update --outdated  # 查看所有需要更新的依赖项
 pipenv update  # 更新所有包的依赖项
 pipenv update <包名>  # 更新指定的包的依赖项
 exit  # 退出当前虚拟环境
+```
 
-pyenv install 3.8
-pyenv local 3.8  # Activate Python 3.9 for the current project
-poetry install
-poetry export -f requirements.txt --output requirements.txt
+poetry常用指令
+```bash
+poetry shell 进入虚拟环境
+poetry add 添加依赖包
+poetry install 安装所有依赖
+poetry run xxx 运行
+poetry build 打包
+poetry publish 发布python包
 ```
 
 ## 依赖获取

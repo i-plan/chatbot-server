@@ -6,7 +6,7 @@ import json
 import time
 
 from flask_restful import Resource, abort
-from flask import request, make_response, jsonify, current_app, session
+from flask import request, current_app
 import os
 import openai
 from flask_sock import Sock
